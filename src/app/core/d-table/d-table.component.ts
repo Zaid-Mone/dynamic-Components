@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import * as XLSX from 'xlsx';
-import { TablePaginationConfig } from '../../models/UITablePaginationStatus';
+import { TablePaginationConfig } from '../../models/TablePaginationConfig';
 @Component({
   selector: 'd-table',
   standalone: true,
@@ -75,12 +75,7 @@ initialPagination(){
 
 refreshTable(){
   let data = this.data;
-  if (this.searchTerm !== '') {
-    data = this.data.filter((item) => this.matches(item));
-    this.tableConfig.totalPages = Math.ceil(data.length / this.tableConfig.pageSize);
-  }else{
-    this.tableConfig.totalPages = Math.floor(this.totalRecords / this.tableConfig.pageSize);
-  }
+  this.tableConfig.totalPages = Math.floor(this.totalRecords / this.tableConfig.pageSize);
   this.tableData = data;
 }
 
@@ -115,8 +110,20 @@ matches(data: any) {
   return false;
 }
 
+onSearch(event:any){
+  let data = this.data;
+  const input = event.target as HTMLInputElement;
+  if (input.value !== '') {
+    data = this.data.filter((item) => this.matches(item));
+    this.tableConfig.totalPages = Math.ceil(data.length / this.tableConfig.pageSize);
+  }
+  this.tableData = data;
+  console.log('Search term:', input.value);
+}
+
 pageChange(page: number) {
   debugger;
+  this.emptyTheInputValue();
   this.tableConfig = {
     ...this.tableConfig,
     page: page,
@@ -132,6 +139,7 @@ this.onPageChnage.emit( {
 
 pageLimitChange(){
   debugger;
+  this.emptyTheInputValue();
   this.tableConfig = {
     ...this.tableConfig,
     pageSize: Number(this.Size),
@@ -220,9 +228,12 @@ exportToPDF() {
 
 }
 
+
+emptyTheInputValue(){
+  this.searchTerm =''
+}
+
 //#endregion
-
-
 
 
 

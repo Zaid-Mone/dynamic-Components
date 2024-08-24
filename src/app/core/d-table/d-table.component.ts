@@ -122,14 +122,12 @@ onSearch(event:any){
 }
 
 pageChange(page: number) {
-  debugger;
+
   this.emptyTheInputValue();
   this.tableConfig = {
     ...this.tableConfig,
     page: page,
   };
-console.log('the page change and you are in the page : ' + this.tableConfig.page);
-console.log('the page Size is  : ' + this.tableConfig.pageSize);
 this.onPageChnage.emit( {
   page:this.tableConfig.page,
   pageSize:this.tableConfig.pageSize
@@ -138,15 +136,12 @@ this.onPageChnage.emit( {
 }
 
 pageLimitChange(){
-  debugger;
   this.emptyTheInputValue();
   this.tableConfig = {
     ...this.tableConfig,
     pageSize: Number(this.Size),
     page:1
   };
-console.log('the page change and you are in the page : ' + this.tableConfig.page);
-console.log('the page Size is  : ' + this.tableConfig.pageSize);
 this.onLimitChange.emit( {
   page:1,
   pageSize:this.tableConfig.pageSize

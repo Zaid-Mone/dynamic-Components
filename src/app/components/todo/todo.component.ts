@@ -37,15 +37,10 @@ export class TodoComponent implements OnInit{
    }
 
    OnPageChage(event:any){
-    console.log('emitter page changed');
-    console.log('emitter page changed event page' + event.page + "PageSize"+ event.pageSize);
     this.getToDo(event.page,event.pageSize);
    }
 
    OnPageLimitChange(event:any){
-    debugger
-    console.log('emitter page changed');
-    console.log('emitter page changed event page' + event.page + "PageSize"+ event.pageSize);
     this.getToDo(event.page,event.pageSize);
    }
 

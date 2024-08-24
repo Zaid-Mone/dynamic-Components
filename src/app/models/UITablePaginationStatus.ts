@@ -1,5 +1,5 @@
 
-export interface UITablePaginationStatus {
+export interface TablePaginationConfig {
   page: number;
   pageSize: number;
   totalPages: number;

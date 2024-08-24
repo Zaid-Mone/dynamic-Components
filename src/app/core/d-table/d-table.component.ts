@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import * as XLSX from 'xlsx';
-import { UITablePaginationStatus } from '../../models/UITablePaginationStatus';
+import { TablePaginationConfig } from '../../models/UITablePaginationStatus';
 @Component({
   selector: 'd-table',
   standalone: true,
@@ -34,7 +34,7 @@ export class DTableComponent implements OnChanges,AfterViewInit{
 //#endregion
 
 //#region table config
-tableConfig: UITablePaginationStatus = {
+tableConfig: TablePaginationConfig = {
   page: 1,
   pageSize: 5,//this.pageSize,
   totalPages: 0,

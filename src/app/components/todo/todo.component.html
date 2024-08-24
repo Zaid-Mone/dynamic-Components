@@ -16,6 +16,13 @@
   >
     <ng-template #tableHeadTemplate>
       <tr>
+        <th>
+          <input
+            type="checkbox"
+            [(ngModel)]="selectAll"
+            (change)="toggleSelectAll($event)"
+          />
+        </th>
         <th>No.</th>
         <th>ID</th>
         <th>User Id</th>
@@ -26,6 +33,9 @@
     </ng-template>
     <ng-template let-todo let-idx="idx" #tableBodyTemplate>
       <tr>
+        <td>
+          <input type="checkbox" (change)="toggleSelection(todo, $event)" />
+        </td>
         <td>{{ idx + 1 }}</td>
         <th>{{ todo.id }}</th>
         <th>{{ todo.userId }}</th>

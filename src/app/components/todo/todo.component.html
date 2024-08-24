@@ -1,0 +1,41 @@
+<div>
+  <d-table
+    [tableHead]="tableHeadTemplate"
+    [tableBody]="tableBodyTemplate"
+    [data]="todos"
+    [tableClass]="'table table-bordered table-striped'"
+    [pagination]="true"
+    [search]="true"
+    [showExports]="true"
+    [totalRecords]="200"
+    [columnFilters]="['title']"
+    [Limits]="[5, 10, 20, 50, 100]"
+    [Size]="5"
+    (onPageChnage)="OnPageChage($event)"
+    (onLimitChange)="OnPageLimitChange($event)"
+  >
+    <ng-template #tableHeadTemplate>
+      <tr>
+        <th>No.</th>
+        <th>ID</th>
+        <th>User Id</th>
+        <th>Title</th>
+        <th>Completed</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template let-todo let-idx="idx" #tableBodyTemplate>
+      <tr>
+        <td>{{ idx + 1 }}</td>
+        <th>{{ todo.id }}</th>
+        <th>{{ todo.userId }}</th>
+        <th>{{ todo.title }}</th>
+        <th>{{ todo.completed }}</th>
+        <th>
+          <button class="btn btn-success btn-sm me-1">Edit</button>
+          <button class="btn btn-danger btn-sm">Delete</button>
+        </th>
+      </tr>
+    </ng-template>
+  </d-table>
+</div>

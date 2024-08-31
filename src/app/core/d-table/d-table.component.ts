@@ -18,13 +18,13 @@ export class DTableComponent implements OnChanges,AfterViewInit{
 @ViewChild('TABLE') table!: ElementRef; // for getting the specific table element
 @Input() tableHead: TemplateRef<any> | null = null; // for display the table head columns
 @Input() tableBody: TemplateRef<any> | null = null; // for display the table body data
-@Input() data: any[] = []; // for the data 
+@Input() data: any[] = []; // for the data
 @Input() totalRecords:number= 0; // for the total numbres of data records
 @Input() tableClass:string=''; // for the table style for ex : ['table table-bordered']
 @Input() columnFilters = ['']; // for the column that will be search in for ex : ['name']
-@Input() pagination: boolean = false; // for display the paggination or not 
-@Input() search: boolean = false; // for display the search or not 
-@Input() showExports: boolean = false; // for display the Export DropDwon or not 
+@Input() pagination: boolean = false; // for display the paggination or not
+@Input() search: boolean = false; // for display the search or not
+@Input() showExports: boolean = false; // for display the Export DropDwon or not
 @Input() Size:number= 0; // for the size of records  per page
 @Input() Limits:number[] = []; // for the limits that will be displayed for the user  for ex : [5,10,20,50]
 
@@ -69,7 +69,7 @@ initialPagination(){
     ...this.tableConfig,
     totalPages : Math.floor(this.tableConfig.totalRecord / this.tableConfig.pageSize)
   }
-  
+
   this.refreshTable();
 }
 
@@ -91,7 +91,7 @@ getColumnCount(): number {
   if (firstRow) {
     return firstRow.children.length;
   }
-  return 0; 
+  return 0;
 }
 
 matches(data: any) {
@@ -149,6 +149,20 @@ this.onLimitChange.emit( {
   this.refreshTable();
 }
 
+getDisplayedPages(): number[] {
+  const totalPages = this.tableConfig.totalPages;
+  const currentPage = this.tableConfig.page;
+  const startPage = Math.max(2, currentPage - 2);
+  const endPage = Math.min(totalPages - 1, currentPage + 2);
+
+  const pages = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(i);
+  }
+
+  return pages;
+}
+
 getMin(a1:number,a2:number):number{
   return  Math.min(a1, a2)
 }
@@ -164,11 +178,11 @@ Export(type:string){
   }
 }
 
-// Export to Excel 
+// Export to Excel
 exportToExcel() {
   debugger;
   // more info => https://stackoverflow.com/questions/50398284/angular-material-data-table-export-to-excel
-  // for remove the edit and update button or any buttons 
+  // for remove the edit and update button or any buttons
   const clonedTable = this.table.nativeElement.cloneNode(true) as HTMLTableElement;
   const buttons = clonedTable.querySelectorAll('button');
   buttons.forEach(button => button.remove());
@@ -219,7 +233,7 @@ exportToPDF() {
       console.error('Error capturing the table as image:', error);
       document.body.removeChild(tempContainer);
     });
-  }, 100); 
+  }, 100);
 
 }
 

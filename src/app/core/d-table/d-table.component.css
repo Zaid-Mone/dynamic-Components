@@ -1,3 +1,22 @@
  .page-link {
    cursor: pointer;
 }
+.form-select{
+width: 90px;
+}
+.dropdown button{
+height: 100%;
+}
+.w-70{
+  width: 70%;
+}
+.table-responsive{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width:372px) {
+  .pagination{
+    max-width: 295px;
+    overflow-x: scroll;
+  }
+}

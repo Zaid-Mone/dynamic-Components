@@ -1,0 +1,17 @@
+#draggable {
+   width: 100px;
+   height: 100px;
+   background-color: lightblue;
+   border: 1px solid blue;
+   cursor: move;
+ }
+ 
+ [appDragDrop] {
+   width: 200px;
+   height: 200px;
+   background-color: lightgray;
+   border: 2px dashed gray;
+   margin-top: 20px;
+   padding: 10px;
+ }
+ 

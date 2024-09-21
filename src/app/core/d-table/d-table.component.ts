@@ -5,10 +5,11 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import * as XLSX from 'xlsx';
 import { TablePaginationConfig } from '../../models/TablePaginationConfig';
+import { DPagginationComponent } from '../d-paggination/d-paggination.component';
 @Component({
   selector: 'd-table',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,DPagginationComponent],
   templateUrl: './d-table.component.html',
   styleUrl: './d-table.component.css'
 })
@@ -67,7 +68,7 @@ constructor(private cdr: ChangeDetectorRef) {}
 initialPagination(){
   this.tableConfig={
     ...this.tableConfig,
-    totalPages : Math.floor(this.tableConfig.totalRecord / this.tableConfig.pageSize)
+    totalPages : Math.ceil(this.tableConfig.totalRecord / this.tableConfig.pageSize)
   }
 
   this.refreshTable();
@@ -75,7 +76,7 @@ initialPagination(){
 
 refreshTable(){
   let data = this.data;
-  this.tableConfig.totalPages = Math.floor(this.totalRecords / this.tableConfig.pageSize);
+  this.tableConfig.totalPages = Math.ceil(this.totalRecords / this.tableConfig.pageSize);
   this.tableData = data;
 }
 
@@ -180,7 +181,6 @@ Export(type:string){
 
 // Export to Excel
 exportToExcel() {
-  debugger;
   // more info => https://stackoverflow.com/questions/50398284/angular-material-data-table-export-to-excel
   // for remove the edit and update button or any buttons
   const clonedTable = this.table.nativeElement.cloneNode(true) as HTMLTableElement;

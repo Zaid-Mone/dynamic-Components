@@ -3,11 +3,12 @@ import { APIService } from '../../services/api.service';
 import { Todo } from '../../models/Todo';
 import { DTableComponent } from '../../core/d-table/d-table.component';
 import { FormsModule } from '@angular/forms';
+import { UploaderComponent } from '../uploader/uploader.component';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [DTableComponent,FormsModule],
+  imports: [DTableComponent, FormsModule, UploaderComponent],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css'
 })
@@ -58,4 +59,12 @@ export class TodoComponent implements OnInit{
     }
     // this.selectAll = this.tableData.every(item => item.selected);
   }
+
+
+
+  handleFilesDropped(files: File[]) {
+    debugger;
+    console.log('Files dropped:', files);
+  }
+  
 }

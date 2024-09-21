@@ -7,7 +7,7 @@
     [pagination]="true"
     [search]="true"
     [showExports]="true"
-    [totalRecords]="200"
+    [totalRecords]="3"
     [columnFilters]="['title']"
     [Limits]="[5, 10, 20, 50, 100]"
     [Size]="5"
@@ -49,3 +49,11 @@
     </ng-template>
   </d-table>
 </div>
+
+<!-- <app-drop-zone
+  [isMultiple]="true"
+  [maxNumber]="5"
+  [accept]="['image/png', 'image/jpeg', 'application/pdf']"
+  (filesDropped)="handleFilesDropped($event)"
+>
+</app-drop-zone> -->
